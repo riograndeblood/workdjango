@@ -7,3 +7,6 @@ class Book(models.Model):
 
     def __str__(self):
         return f"книга:{self.id}, Название:{self.title}, автор:{self.author}"
+
+class Genre(models.Model):
+    title = models.CharField(max_length=50)
