@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import first,second
 from books.views import books
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', first),
