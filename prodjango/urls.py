@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from .views import first,second
 from books.views import books
+from PostTag.views import PostTag
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', first),
     path('list/', second),
-    path('get_books/', books, name="books")
+    path('get_books/', books, name="books"),
+    path('get_posts/', PostTag, name="PostTag")
 ]

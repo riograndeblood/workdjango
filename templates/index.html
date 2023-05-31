@@ -2,17 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Книги</title>
+    <title>ПОСТЫ</title>
 </head>
 <body>
-    <h1>
-        Список книг
+    <h1>Список постов:</h1>
 
-    </h1>
-    {%for book in books%}
-        <p>{{book.title}}</p>
-        <p>{{book.author}}</p>
+     <img src="https://fs.kinomania.ru/file/film/5/96/59691ff0f4b041ed394d5603b2c71591.jpeg">
+    <img src="https://b1.filmpro.ru/c/377809.600xp.jpg">
+    <img src="https://avatars.yandex.net/get-music-content/117546/52d8898e.p.3121/m1000x1000">
+    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/9b/Diablo_2_-_Resurrected.jpg/800px-Diablo_2_-_Resurrected.jpg">
+    {%for post in PostTag%}
+        <p style="font-size: 40px"> {{post.title}}</p>
+        <p style="font-size: 20px">{{post.date}}</p>
+        <p style="font-size: 20px">{{post.description}}</p>
+    <img src="https://undergrad.ucf.edu/whatsnext/wp-content/uploads/sites/5/2018/01/whats-next-post.jpg">
     {%endfor%}
+
+
+    <h1>Тэги:</h1>
+    {%for tag in tags%}
+        <p style="font-size: 20px">{{tag.title}}</p>
+    {%endfor%}
+
+    <h1>Каналы вещания:</h1>
+        {%for category in category%}
+        <p style="font-size: 20px">{{category.title}}:{{category.languages}}</p>
+
+
+    {%endfor%}
+
+
+
+
 
 
 </body>
