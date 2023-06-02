@@ -5,7 +5,7 @@ class Post(models.Model):
     posttag = models.ManyToManyField("Tag", related_name="tags")
     category = models.OneToOneField("Category", on_delete=models.DO_NOTHING, default=None)
     description = models.TextField(max_length=500)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"Пост: {self.id}, Название: {self.title}, Описание: {self.description}"
 
@@ -18,7 +18,7 @@ class Tag(models.Model):
     title = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Тэг: {self.title}"
+        return f"Тэги: {self.title}"
 
 class Category(models.Model):
     LANGUAGES = (
