@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Посты: {{posttag.title}}</title>
+</head>
+<body>
+
+
+{%for post in posttag.posts.all%}
+    <p>{{post.title}}
+    {{post.date}}
+</p>
+
+{%endfor%}
+
+
+
+
+
+
+
+
+</body>
+</html>

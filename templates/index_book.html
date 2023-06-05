@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+    <h1>Список книг</h1>
+    {% for book in books %}
+        <p>
+            Название: <a href="{% url 'get_book' book.id %}">
+             {{book.title}}
+         </a>
+        </p>
+
+            <p>Автор: {{book.author}}</p>
+            <br>
+        {% endfor %}
+
+
+    <h3>Жанр:</h3>
+        {% for genre in genres %}
+            <p>{{genre}}</p>
+        {% endfor %}
+
+    <h3>Издатели:</h3>
+        {% for publisher in publisher %}
+            <p>{{publisher.title}}</p>
+        {% endfor %}
+
+</body>
+</html>

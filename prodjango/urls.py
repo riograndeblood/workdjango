@@ -17,13 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import first,second
-from books.views import books
-from PostTag.views import PostTag
+from books.views import books, get_book, get_genre_books
+from PostTag.views import PostTag, get_post, get_posttag_posts
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', first),
     path('list/', second),
     path('get_books/', books, name="books"),
-    path('get_posts/', PostTag, name="PostTag")
+    path("get_books/<int:id>/", get_book, name="get_book"),
+    path("get_genre/<str:title>/", get_genre_books, name="get_genre"),
+    path('get_posts/', PostTag, name="PostTag"),
+    path("get_posts/<int:id>/", get_post, name="get_post"),
+    path("get_tag/<str:title>/", get_posttag_posts, name="get_tag")
+
 ]

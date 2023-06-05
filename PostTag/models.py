@@ -2,7 +2,7 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
-    posttag = models.ManyToManyField("Tag", related_name="tags")
+    posttag = models.ManyToManyField("Tag", related_name="posts")
     category = models.OneToOneField("Category", on_delete=models.DO_NOTHING, default=None)
     description = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now=True)
