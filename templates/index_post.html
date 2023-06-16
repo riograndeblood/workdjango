@@ -5,56 +5,38 @@
     <title>ПОСТЫ</title>
 </head>
 <body>
-    <h1>Постеры постов:</h1>
+     <form action="{% url 'search_post' %}" method="get">
+        {% csrf_token %}
+        <input placeholder="Введите название поста" type="text" name="title">
+        <input placeholder="Введите категорию"type="text" name="category_post">
 
-    <img src="https://fs.kinomania.ru/file/film/5/96/59691ff0f4b041ed394d5603b2c71591.jpeg">
-    <img src="https://b1.filmpro.ru/c/377809.600xp.jpg">
-    <img src="https://avatars.yandex.net/get-music-content/117546/52d8898e.p.3121/m1000x1000">
-    <img src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/9b/Diablo_2_-_Resurrected.jpg/800px-Diablo_2_-_Resurrected.jpg">
+        <input type="submit" value="OK">
+    </form>
+
+
     <h1>Список постов:</h1>
-    {%for post in PostTag%}
+     {%for post in PostTag%}
+        <p style="font-size: 30px">
+            Название: <a href="{% url 'get_post' post.id %}">
+              {{post.title}}
+            </a>
+        </p>
+
+              {% if post.category_post %}
+
+<p style="font-size: 20px">Категория: {{post.category_post.title}}</p>
+
+{% else %}
+
+<p style="font-size: 20px">Категория: не указана</p>
+
+{% endif %}
+     <img src="https://undergrad.ucf.edu/whatsnext/wp-content/uploads/sites/5/2018/01/whats-next-post.jpg">
+            {%endfor%}
 
 
-
-
-
-        <p style="font-size: 40px">{{post.title}}</p>
-        <p style="font-size: 20px">{{post.date}}</p>
-        <p style="font-size: 20px">{{post.description}}</p>
-    <p>Тэги:</p>
-
-      {%for tag in post.posttag.all%}
-
-
-      <p>
-    <a href="{% url 'get_post' post.id %}">
-
-
-        <p style="font-size: 20px">{{tag.title}}</p>
-    </a>
+    <p style="font-size: 40px">
+    <a href="{% url 'add_post' %}">Добавить пост</a>
     </p>
-        {%endfor%}
-        <img src="https://undergrad.ucf.edu/whatsnext/wp-content/uploads/sites/5/2018/01/whats-next-post.jpg">
-    {%endfor%}
-
-
-    <h1>Все тэги:</h1>
-
-    {%for tag in tags%}
-
-        <p style="font-size: 20px">{{tag.title}}</p>
-    {%endfor%}
-
-    <h1>Каналы вещания:</h1>
-        {%for category in category%}
-        <p style="font-size: 20px">{{category.title}}:{{category.languages}}</p>
-
-
-    {%endfor%}
-
-
-
-
-
 </body>
 </html>

@@ -5,12 +5,33 @@
     <title>Посты: {{posttag.title}}</title>
 </head>
 <body>
+<h1>{{post.title}}</h1>
+    <p style="font-size: 30px">Описание: {{post.description}}</p>
+    <p style="font-size: 20px">Дата создания: {{post.date}}</p>
+    <p style="font-size: 20px">Канал: {{post.category.title}}</p>
+    <p style="font-size: 20px">Язык: {{post.category.get_languages_display}}</p>
+{% if post.category_post %}
 
-<h1>Посты:</h1>
+<p style="font-size: 20px">Категория: {{post.category_post.title}}</p>
+
+{% else %}
+
+<p style="font-size: 20px">Категория: не указана</p>
+
+{% endif %}
 
 
 
 
+<p style="font-size: 30px">Тэги:</p>
+
+      {%for tag in post.posttag.all%}
+
+      <p style="font-size: 20px">
+   <b> <a href="{% url 'get_tag' tag.title%}"> {{tag.title}} </a> </b>
+      </p>
+        {%endfor%}
+    <p></p> <b> <a href="{% url 'delete_post' post.id %}"> Удалить пост</a> </b> </p>
 
 
 

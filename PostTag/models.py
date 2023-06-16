@@ -2,10 +2,12 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
-    posttag = models.ManyToManyField("Tag", related_name="posts")
-    category = models.OneToOneField("Category", on_delete=models.DO_NOTHING, default=None)
-    description = models.TextField(max_length=500)
-    date = models.DateTimeField(auto_now=True)
+    posttag = models.ManyToManyField("Tag", related_name="posts",blank=True)
+    category = models.OneToOneField("Category", on_delete=models.DO_NOTHING, default=None, null=True, blank=True)
+    description = models.TextField(max_length=500,default=None, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    category_post = models.ForeignKey("CategoryPost", on_delete=models.DO_NOTHING, null=True, blank=True, related_name="PostTag")
+
     def __str__(self):
         return f"Пост: {self.id}, Название: {self.title}, Описание: {self.description}"
 
@@ -27,8 +29,12 @@ class Category(models.Model):
         ("fr","French")
     )
     title = models.CharField(max_length=50)
-    languages = models.CharField(max_length=2, choices=LANGUAGES, default=None)
+    languages = models.CharField(max_length=2, choices=LANGUAGES)
     def __str__(self):
         return f"Канал: {self.title}.{self.languages}"
 
 
+class CategoryPost(models.Model):
+    title = models.CharField(max_length=50)
+    def __str__(self):
+        return f"Категория: {self.id}, {self.title}"

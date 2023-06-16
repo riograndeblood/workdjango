@@ -5,28 +5,35 @@
     <title>Книги</title>
 </head>
 <body>
-    <h1>Список книг</h1>
+    <form action="{% url 'search_book' %}" method="get">
+        {% csrf_token %}
+        <input placeholder="Введите название книги" type="text" name="title">
+        <input placeholder="Введите жанр"type="text" name="genre">
+        <input type="submit" value="OK">
+    </form>
+
+
+
+    <h1>
+        Список книг
+    </h1>
+
     {% for book in books %}
         <p>
             Название: <a href="{% url 'get_book' book.id %}">
-             {{book.title}}
-         </a>
+                {{book.title}}
+            </a>
         </p>
+        <p>Автор: {{book.author}}</p>
+        <p>Жанр: {{book.genre.title}}</p>
+        <p>Год: {{book.year}}</p>
 
-            <p>Автор: {{book.author}}</p>
-            <br>
-        {% endfor %}
+
+ <img src="https://undergrad.ucf.edu/whatsnext/wp-content/uploads/sites/5/2018/01/whats-next-post.jpg">
+    {% endfor %}
+   <p> <a style="font-size: 40px" href="{% url 'add_book' %}">Добавить книгу </a></p>
 
 
-    <h3>Жанр:</h3>
-        {% for genre in genres %}
-            <p>{{genre}}</p>
-        {% endfor %}
-
-    <h3>Издатели:</h3>
-        {% for publisher in publisher %}
-            <p>{{publisher.title}}</p>
-        {% endfor %}
 
 </body>
 </html>

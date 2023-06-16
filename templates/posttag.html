@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Посты: {{posttag.title}}</title>
+    <title>{{posttag.title}}</title>
 </head>
 <body>
-
-
+    <h1>Тэг : {{posttag.title}}</h1>
+    <h2>Все посты с таким тегом</h2>
 {%for post in posttag.posts.all%}
-    <p>{{post.title}}
-    {{post.date}}
-</p>
+    <p style="font-size: 20px">{{post.title}} //
+        Создано : {{post.date}}</p>
+
 
 {%endfor%}
 

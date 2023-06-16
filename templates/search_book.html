@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книг</title>
+</head>
+<body>
+    <h1>Поиск книг</h1>
+    {% if books %}
+    {% for book in books %}
+
+        <p>
+
+            Название: <a href="{% url 'get_book' book.id %}">
+                {{book.title}}
+            </a>
+        </p>
+        <p>Автор: {{book.author}}</p>
+        <p>Жанр: {{book.genre.title}}</p>
+        <p>Год: {{book.year}}</p>
+        <br>
+
+    {% endfor %}
+    {%else%}
+    <h1>Книги с такими фильтрами нет!</h1>
+    {%endif%}
+</body>
+</html>

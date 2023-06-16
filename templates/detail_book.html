@@ -6,8 +6,8 @@
 </head>
 
 <body>
-<p>Название: {{book.title}}</p>
-<p>Автор: {{book.author}}</p>
+<p>{{book.title}}</p>
+<p>{{book.author}}</p>
 <br>
 <p>Год: {{book.year}}</p>
 <p>Рейтинг: {{book.rating}}</p>
@@ -23,11 +23,15 @@
 <p>Жанр: не указан</p>
 
 {% endif %}
-
+<p>Время публикации на сайте: {{ book.created_at }}</p>
 <p>Тэги:</p>
 {%for tag in book.tags.all%}
-        <b style="font-size: 20px">{{tag.title}}</b>
+<p>  <b> <a href="{% url 'get_tag_books' tag.title%}">{{tag.title}} </a> </b> </p>
+
+
 
         {%endfor%}
+
+        <p></p> <b> <a href="{% url 'delete_book' book.id %}"> Удалить книгу</a> </b> </p>
 </body>
 </html>

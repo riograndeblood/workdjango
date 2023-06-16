@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить новый пост</title>
+</head>
+<body>
+
+    <form action="{% url 'add_post' %}" method="post">
+        {% csrf_token %}
+
+    {% for field in form%}
+
+     <p style="font-size: 30px">{{field.label_tag}} {{field}}</p>
+
+     {%endfor%}
+
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

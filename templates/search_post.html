@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск постов</title>
+</head>
+<body>
+    <h1>Поиск постов</h1>
+    {% if posts %}
+    {% for post in posts %}
+
+        <p style="font-size: 30px">
+
+            Название: <a href="{% url 'get_post' post.id %}">
+                {{post.title}}
+            </a>
+        </p>
+        <p style="font-size: 30px">Описание: {{post.description}}</p>
+        <p style="font-size: 20px">Дата создания: {{post.date}}</p>
+        <p style="font-size: 20px">Канал: {{post.category.title}}</p>
+        <p style="font-size: 20px">Язык: {{post.category.get_languages_display}}</p>
+        <br>
+
+    {% endfor %}
+    {%else%}
+    <h1>Поста с такими фильтрами нет!</h1>
+    {%endif%}
+</body>
+</html>
