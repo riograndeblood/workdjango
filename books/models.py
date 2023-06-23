@@ -15,6 +15,7 @@ class Book(models.Model):
     genre = models.ForeignKey("Genre", on_delete=models.DO_NOTHING, null=True, blank=True, related_name="books")
     tags = models.ManyToManyField("Tag", related_name="books",null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(default='default.jpg')
     def __str__(self):
         return f"книга:{self.id}, Название: {self.title}, автор: {self.author}"
 

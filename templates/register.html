@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Добавить новую книгу</title>
+    <title>Регистрация пользователя</title>
 </head>
 <body>
-    <form action="{% url 'add_book' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
     {% for field in form%}
      <p>{{field.label_tag}} {{field}}</p>
      {%endfor%}
     <input type="submit" value="OK">
-</form>
+    </form>
 </body>
 </html>

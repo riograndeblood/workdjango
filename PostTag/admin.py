@@ -2,7 +2,8 @@ from django.contrib import admin
 
 from .models import Post, Tag, Category,CategoryPost
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("id","title","category","date", "get_tags",'category_post')
+    list_display = ("id","title","category","date",
+                    "get_tags",'category_post','image')
     def get_tags(self,obj):
         tags = obj.posttag.all()
         return  ",\n".join([t.title for t in tags])

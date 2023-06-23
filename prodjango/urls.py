@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import first,second
-from books.views import books, get_book, get_genre_books, get_tag_books, add_book, search_book, delete_book
-from PostTag.views import PostTag, get_post, get_posttag_posts, add_post, search_post, delete_post
+from books.views import books, get_book, get_genre_books, get_tag_books, add_book, search_book, delete_book, update_book
+from PostTag.views import PostTag, get_post, get_posttag_posts, add_post, search_post, delete_post, update_post
 from django.conf import settings
 from django.conf.urls.static import static
-
+from users.views import register_user
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', first),
@@ -33,6 +33,7 @@ urlpatterns = [
     path('add_book/', add_book, name='add_book'),
     path('search_book/', search_book, name='search_book'),
     path('delete_book/<int:id>/', delete_book, name='delete_book'),
+    path('update_book/<int:id>/', update_book, name='update_book_by_id'),
     # path('create_book/', create_book, name="create_book"),
 
     path('get_posts/', PostTag, name="PostTag"),
@@ -41,6 +42,9 @@ urlpatterns = [
     path('add_post/', add_post, name='add_post'),
     path('search_post/', search_post, name='search_post'),
     path('delete_post/<int:id>/', delete_post, name='delete_post'),
+    path('update_post/<int:id>/', update_post, name='update_post_by_id'),
+
+    path('registration/', register_user, name='register')
 
 
     # path('create_post/', create_post, name="create_post")

@@ -5,11 +5,13 @@
     <title>Книги</title>
 </head>
 <body>
+        <p> <a style="font-size: 40px" href="{% url 'register' %}">Регистрация</a></p>
     <form action="{% url 'search_book' %}" method="get">
         {% csrf_token %}
         <input placeholder="Введите название книги" type="text" name="title">
         <input placeholder="Введите жанр"type="text" name="genre">
         <input type="submit" value="OK">
+
     </form>
 
 
@@ -19,6 +21,7 @@
     </h1>
 
     {% for book in books %}
+
         <p>
             Название: <a href="{% url 'get_book' book.id %}">
                 {{book.title}}
@@ -32,6 +35,7 @@
  <img src="https://undergrad.ucf.edu/whatsnext/wp-content/uploads/sites/5/2018/01/whats-next-post.jpg">
     {% endfor %}
    <p> <a style="font-size: 40px" href="{% url 'add_book' %}">Добавить книгу </a></p>
+
 
 
 

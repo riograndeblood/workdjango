@@ -7,6 +7,7 @@ class Post(models.Model):
     description = models.TextField(max_length=500,default=None, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     category_post = models.ForeignKey("CategoryPost", on_delete=models.DO_NOTHING, null=True, blank=True, related_name="PostTag")
+    image = models.ImageField(default='default.jpg')
 
     def __str__(self):
         return f"Пост: {self.id}, Название: {self.title}, Описание: {self.description}"

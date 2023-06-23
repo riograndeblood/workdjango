@@ -6,6 +6,10 @@
 </head>
 
 <body>
+{%if book.image %}
+<img style="width: 300px; height: 300px" src="{{ book.image.url }}">
+{%endif%}
+
 <p>{{book.title}}</p>
 <p>{{book.author}}</p>
 <br>
@@ -31,7 +35,7 @@
 
 
         {%endfor%}
-
+        <p></p> <b> <a href="{% url 'update_book_by_id' book.id %}"> Редактировать книгу</a> </b> </p>
         <p></p> <b> <a href="{% url 'delete_book' book.id %}"> Удалить книгу</a> </b> </p>
 </body>
 </html>

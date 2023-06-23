@@ -34,18 +34,23 @@ def add_post(request):
     elif request.method == "POST":
         category_id = request.POST['category']
 
+        category = None
+        image = request.FILES.get('image', 'default.jpg')
+
 
         if  category_id != '' :
             category = Category.objects.get(id= category_id)
 
-        else:
-            category = None
+
+
+
 
 
         post = Post.objects.create(title = request.POST['title'],
                             category=category,
                             description=request.POST['description'],
-                            )
+                            image=image,
+                            category_post = request.POST['category_post']       )
 
         posttag = request.POST.getlist('posttag')
 
@@ -85,3 +90,38 @@ def delete_post(request, id):
     post.delete()
     return redirect('PostTag')
 
+def update_post(request, id):
+    try:
+        post = Post.objects.get(id=id)
+    except Post.DoesNotExist:
+        return HttpResponse(f"<h1>Пост с id: {id} изменена!</h1>")
+    if request.method == "GET":
+        form = PostForm(instance=post)
+        return render(request, "update_post.html", context={"form": form,
+                                                            "post": post})
+    elif request.method == "POST":
+        category_id = request.POST['category']
+        category_post_id = request.POST['category_post']
+
+        category = None
+        category_post = None
+        image = request.FILES.get('image', 'default.jpg')
+
+        if category_id != '':
+            category = Category.objects.get(id=category_id)
+        if category_post_id != '':
+            category_post = CategoryPost.objects.get(id=category_post_id)
+
+
+        post.title = request.POST['title']
+        posttag = request.POST.getlist('posttag')
+        post.posttag.set(posttag)
+        post.category = category
+        post.description = request.POST['description']
+        post.category_post = category_post
+        post.image = image
+
+
+
+        post.save()
+        return redirect('/get_posts/', id=post.id)
